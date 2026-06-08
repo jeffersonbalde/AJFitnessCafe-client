@@ -1,0 +1,388 @@
+.storefront-root {
+  background: var(--background-light);
+}
+
+.storefront-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: var(--background-white);
+  /* Keeps bar readable over scrolling content (avoids transparency issues) */
+  box-shadow:
+    0 1px 0 rgba(12, 40, 20, 0.06),
+    0 4px 12px rgba(12, 40, 20, 0.06);
+}
+
+/* Match Login page `.login-signin-btn`: no shadow, background-only transition */
+.storefront-login-btn {
+  font-weight: 600;
+  color: #fff !important;
+  background-color: var(--primary-dark) !important;
+  border: 1px solid var(--primary-dark) !important;
+  padding-inline: 1rem;
+  border-radius: 8px;
+  box-shadow: none !important;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.storefront-login-btn:hover {
+  color: #fff !important;
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.storefront-login-btn:focus-visible {
+  color: #fff !important;
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+
+.store-hero {
+  /* Use a solid overlay on top of an image (no gradient) for readability */
+  position: relative;
+  overflow: hidden;
+  background: var(--footer-bg, #f1f8e9);
+  border: 1px solid rgba(13, 122, 58, 0.12);
+  isolation: isolate; /* keeps the overlays behind content reliably */
+}
+
+.store-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../assets/background_image.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  border-radius: inherit;
+  /* Keep image sharp (no blur) but slightly punchy under the overlay */
+  filter: saturate(1.08) contrast(1.06);
+}
+
+.store-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Solid tint overlay (opacity), no gradient */
+  /* Darken just enough for readable, attractive contrast */
+  /* Neutral + lighter tint so the image stays visible (no green filter) */
+  background: rgba(0, 0, 0, 0.22);
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.store-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.store-hero-eyebrow,
+.store-hero-title,
+.store-hero-lead {
+  /* Ensure text contrasts over the background image */
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.store-hero-lead strong {
+  color: #ffffff;
+}
+
+.storefront-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border: 2px solid var(--accent-color);
+}
+
+.storefront-nav {
+  position: relative;
+}
+
+.storefront-mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--primary-dark);
+  box-shadow: none;
+  padding: 0;
+}
+
+.storefront-mobile-toggle:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.storefront-mobile-toggle:hover {
+  background: rgba(13, 122, 58, 0.08);
+}
+
+.storefront-mobile-toggle i {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.storefront-nav-link--menu {
+  /* Desktop default: show */
+}
+
+.storefront-mobile-panel {
+  display: block;
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 1051;
+  background: var(--background-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.12);
+  padding: 0.25rem;
+  width: 200px;
+  max-width: calc(100vw - 1.25rem);
+  min-width: 0;
+  max-height: calc(100vh - 5rem);
+  overflow: auto;
+
+  /* Smooth dropdown transition */
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.storefront-mobile-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.storefront-mobile-panel-item {
+  display: block;
+  width: 100%;
+  padding: 0.45rem 0.55rem;
+}
+
+.storefront-mobile-panel .storefront-nav-link {
+  /* Override the desktop nav link spacing for consistent dropdown spacing */
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.storefront-mobile-panel .storefront-nav-link:hover {
+  color: var(--primary-dark);
+  background: rgba(13, 122, 58, 0.12);
+}
+
+.text-brand {
+  color: var(--primary-dark);
+}
+
+.bg-brand {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+}
+
+.storefront-tagline {
+  font-size: 0.72rem;
+  max-width: 14rem;
+}
+
+.storefront-nav-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.storefront-nav-link:hover {
+  color: var(--primary-dark);
+  background: rgba(13, 122, 58, 0.08);
+}
+
+.storefront-nav-link.active {
+  color: var(--primary-dark);
+  background: rgba(13, 122, 58, 0.12);
+}
+
+.storefront-main {
+  /* Solid background to avoid “card/hero gradient” visuals bleeding into layout */
+  background: #f8faf9;
+}
+
+.storefront-footer {
+  background: var(--footer-bg, #f1f8e9);
+  border-color: var(--footer-border, #dcedc8) !important;
+}
+
+.storefront-product-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.storefront-product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Store menu title */
+.store-menu-title {
+  /* Scale across mobile/tablet/desktop */
+  font-size: clamp(1.2rem, 3.2vw, 1.85rem) !important;
+  line-height: 1.2;
+}
+
+/* Extra specificity in case other heading styles compete */
+#store-menu .store-menu-title {
+  font-size: clamp(1.2rem, 3.2vw, 1.85rem) !important;
+  line-height: 1.2;
+}
+
+/* Responsive tuning (tablet + mobile) */
+@media (max-width: 991.98px) {
+  .store-hero .display-6 {
+    font-size: 2.15rem;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .storefront-header .container {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .storefront-nav {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+
+  /* Mobile: use hamburger instead of the "Menu" link */
+  .storefront-mobile-toggle {
+    display: inline-flex;
+  }
+
+  .storefront-nav-link--menu {
+    display: none;
+  }
+
+  /* Hide desktop cart + auth buttons; show them in hamburger panel */
+  .storefront-nav-link--desktop-cart,
+  .storefront-nav-link--desktop-auth {
+    display: none !important;
+  }
+
+  /* Fix dropdown to viewport on mobile/tablet so it never clips off-screen */
+  .storefront-mobile-panel {
+    position: fixed;
+    top: 72px;
+    right: 0.9rem;
+    left: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .storefront-header .container {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .storefront-nav {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+
+  .storefront-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .storefront-tagline {
+    font-size: 0.65rem;
+    max-width: 11rem;
+  }
+
+  .storefront-nav-link {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.45rem;
+    border-radius: 6px;
+  }
+
+  /* Mobile: use hamburger instead of the "Menu" link */
+  .storefront-mobile-toggle {
+    display: inline-flex;
+  }
+
+  .storefront-nav-link--menu {
+    display: none;
+  }
+
+  /* Hide desktop cart + auth buttons; show them in the hamburger panel */
+  .storefront-nav-link--desktop-cart,
+  .storefront-nav-link--desktop-auth {
+    display: none !important;
+  }
+
+  .storefront-mobile-panel {
+    /* Fit within viewport on narrow phones */
+    right: 0.9rem;
+    left: auto;
+    width: 240px;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .storefront-login-btn {
+    font-size: 0.85rem;
+    padding-inline: 0.85rem;
+    border-radius: 8px;
+  }
+
+  /* Make hero content fit better on small screens */
+  .store-hero {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .store-hero .display-6 {
+    font-size: 1.85rem !important;
+    line-height: 1.12;
+  }
+
+  .store-hero .lead {
+    font-size: 1.02rem;
+    line-height: 1.35;
+  }
+
+  .store-hero-eyebrow {
+    font-size: 0.7rem !important;
+  }
+
+  .store-menu-title {
+    font-size: clamp(1.15rem, 4.2vw, 1.45rem) !important;
+    line-height: 1.15;
+  }
+}
